@@ -1,5 +1,4 @@
 """
-  APP2.PY — SERVIDOR BACKEND DE GLASSIA
   Proyecto Integrador: Lentes inteligentes con reconocimiento de hardware
   Autoras: Adriana Cedillo · Valentina Cáceres
   Curso: 3.º E1 · 2026
@@ -132,14 +131,12 @@ def home():
     return render_template("pagina.html", ip=ESP32_IP)
 
 
-# Ruta opcional de prueba
+# Ruta de prueba
 #@app.route("/")
 #def home():
     #return """
     #<h2>Servidor activo</h2>
     #<p>Ir a <a href='/live'>/live</a></p>
-
-
 
 # PREDICCIÓN DESDE ESP32
 from flask import Response
@@ -207,6 +204,7 @@ def predict_esp32():
             info = component_info.get(predicted_class, {})
 
             # Enviar resultado a la pantalla OLED del ESP32 
+            # Hace una petición GET al endpoint /display del ESP32 que controla la micro-pantalla OLED integrada en los lentes
             try:
                 requests.get(
                     f"http://{ESP32_IP}/display?text={predicted_class}&conf={round(confidence_pct,1)}",
@@ -226,7 +224,7 @@ def predict_esp32():
             })
 
         else:
-            #ENVIAR A OLED SI NO RECONOCE
+            #Envia a la OLED que no se reconoció nada
             try:
                 requests.get(
                     f"http://{ESP32_IP}/display?text=NO&conf={round(confidence_pct,1)}",
@@ -245,13 +243,14 @@ def predict_esp32():
             })
 
     except Exception as e:
+        # Captura cualquier error y lo retorna como JSON
         return jsonify({"error": str(e)})
 
 # EJECUCIÓN
 if __name__ == "__main__":
     app.run(
-        debug=True,
-        use_reloader=False,
-        host="0.0.0.0",
-        port=5000
+        debug=True,         # Muestra errores detallados y recarga automática
+        use_reloader=False, # Evita cargar el modelo 2 veces
+        host="0.0.0.0",     # Escucha en todas las interfaces de red 
+        port=5000           # Puerto HTTP
     )
