@@ -13,159 +13,232 @@
   <nav>
     <div class="nav-logo">GLASS<span>IA</span></div>
     <ul>
-      <li><a href="#about">Proyecto</a></li>
-      <li><a href="#how">Cómo Funciona</a></li>
-      <li><a href="#components">Componentes</a></li>
-      <li><a href="#features">Features</a></li>
+      <li><a href="#sobre">Proyecto</a></li>
+      <li><a href="#como">Cómo Funciona</a></li>
+      <li><a href="#componentes">Componentes</a></li>
+      <li><a href="#caracteri">Características</a></li>
       <li><a href="#deteccion">Detección</a></li>
-      <li><a href="#team">Equipo</a></li>
+      <li><a href="#equipo">Equipo</a></li>
     </ul>
   </nav>
 
   <section class="hero">
-    <div class="hero-badge">PROYECTO INTEGRADOR · 2025</div>
+    <div class="hero-badge">PROYECTO INTEGRADOR</div>
     <h1><span class="accent">GLASS</span><span class="dot">IA</span></h1>
     <p class="hero-sub">Tu visión, potenciada por la inteligencia.</p>
     <div class="hero-cta">
-      <a href="#about" class="btn btn-primary">Explorar Proyecto</a>
-      <a href="#how" class="btn btn-outline">Cómo Funciona</a>
+      <a href="#sobre" class="btn btn-primary">Explorar Proyecto</a>
+      <a href="#como" class="btn btn-outline">Cómo Funciona</a>
     </div>
     <div class="hero-chips">
-      <span class="chip">IA · VISIÓN ARTIFICIAL</span>
-      <span class="chip">RECONOCIMIENTO DE HARDWARE</span>
-      <span class="chip">WEARABLE TECH</span>
-      <span class="chip">OLED · Wi-Fi</span>
-      <span class="chip">EDUCACIÓN TECNOLÓGICA</span>
+      <span class="tech-badge tooltip" data-text="Tecnología que permite a las máquinas aprender, 
+      razonar y tomar decisiones similares a las de los humanos.">INTELIGENCIA ARTIFICIAL</span>
+      <span class="tech-badge tooltip" data-text="Rama de la tecnología que permite a las máquinas “ver” y analizar imágenes 
+      como lo haría una persona.">VISIÓN ARTIFICIAL</span>
+      <span class="tech-badge tooltip" data-text="Proceso mediante el cual un sistema identifica y detecta los componentes 
+      físicos conectados a un computador.">RECONOCIMIENTO DE HARDWARE</span>
+      <span class="tech-badge tooltip" data-text="Área de aprendizaje que desarrolla conocimientos y habilidades sobre el uso 
+      y funcionamiento de la tecnología.">EDUCACIÓN TECNOLÓGICA</span>
     </div>
     <div class="scroll-hint">
-      <span>SCROLL</span>
+      <span>DESLIZAR</span>
       <div class="scroll-line"></div>
     </div>
   </section>
 
-  <section class="about" id="about">
+  <section class="sobre" id="sobre">
     <div class="container">
-      <div class="about-grid">
-        <div class="about-text reveal">
-          <p class="section-label">// 01 · SOBRE EL PROYECTO</p>
+      <div class="sobre-grid">
+        <div class="sobre-text reveal">
           <h2 class="section-title">¿Qué es <span style="color:var(--cyan-glow)">GlassIA</span>?</h2>
           <div class="line-accent"></div>
-          <p><strong>GlassIA</strong> es un prototipo de gafas inteligentes que integra <strong>visión artificial</strong>, una micro-pantalla <strong>OLED</strong> y conectividad <strong>Wi-Fi</strong>. El dispositivo captura imágenes del entorno mediante un módulo de cámara, identifica componentes de hardware de computadoras y envía la información detallada a una página web para su visualización en tiempo real.</p>
-          <p>Nace de la curiosidad por entender cómo funcionan las cosas. No son solo unas gafas; es una <strong>compañera de aprendizaje</strong> que utiliza inteligencia artificial para que el hardware deje de ser un misterio y se convierta en algo fácil de comprender para cualquier estudiante.</p>
-          <p>A través del <strong>reconocimiento visual en tiempo real</strong>, permite identificar componentes y acceder a información de manera inmediata, fomentando un aprendizaje más interactivo, práctico y accesible dentro de entornos educativos tecnológicos.</p>
+          <p><strong>GlassIA</strong> es un prototipo de lentes inteligentes que integra 
+            <strong class="clickable" onclick="abrirModal('Visión Artificial')">visión artificial
+            </strong>, una <strong class="clickable" onclick="abrirModal('MICRO-PANTALLA OLED')">micro-pantalla 
+            OLED</strong> y conectividad <strong class="clickable" onclick="abrirModal('Wi-Fi')">Wi-Fi</strong>. 
+            El dispositivo captura imágenes del entorno mediante un <strong class="clickable" onclick=
+            "abrirModal('Módulo de Cámara')">módulo de cámara</strong>, identifica componentes de hardware de 
+            computadoras y envía la información detallada a una página web para su visualización en tiempo real.</p>
+          <p>Nace de la curiosidad por entender cómo funcionan las cosas. No son solo unas lentes; es una 
+            compañera de aprendizaje que utiliza inteligencia artificial para que el hardware deje de ser 
+            un misterio y se convierta en algo fácil de comprender para cualquier estudiante.</p>
+          <p>A través del <strong class="clickable" onclick="abrirModal('Reconocimiento Visual')">reconocimiento 
+            visual </strong> en <strong class="clickable" onclick="abrirModal('Tiempo Real')">tiempo real</strong>,
+            permite identificar componentes y acceder a información de manera inmediata, fomentando un aprendizaje
+            más interactivo, práctico y accesible dentro de entornos educativos tecnológicos.</p>
         </div>
-        <div class="about-visual reveal">
+        <div class="sobre-visual reveal">
           <div class="radar">
             <div class="radar-ring"></div>
             <div class="radar-ring"></div>
             <div class="radar-ring"></div>
-            <div class="radar-center">👓</div>
+            <div class="radar-center"><img src="imagenes/gafas.png" alt="lentes"></div>
           </div>
         </div>
       </div>
     </div>
   </section>
-
-  <section class="how" id="how">
+  <section class="como" id="como">
     <div class="container">
-      <div class="reveal">
-        <p class="section-label">// 02 · FUNCIONAMIENTO</p>
-        <h2 class="section-title">¿Cómo <span style="color:var(--cyan-glow)">Funciona</span>?</h2>
-        <div class="line-accent"></div>
-      </div>
-      <div class="steps">
-        <div class="step-card reveal">
-          <div class="step-num">01</div>
-          <div class="step-icon">📷</div>
-          <h3>CAPTURA DE IMAGEN</h3>
-          <p>El módulo de cámara integrado en las gafas captura imágenes del componente de hardware en tiempo real desde el punto de vista del usuario.</p>
-        </div>
-        <div class="step-card reveal">
-          <div class="step-num">02</div>
-          <div class="step-icon">🧠</div>
-          <h3>PROCESAMIENTO IA</h3>
-          <p>El modelo de inteligencia artificial analiza la imagen y clasifica el componente detectado entre CPU, RAM, GPU, placa madre, PSU, fan, SSD o HDD.</p>
-        </div>
-        <div class="step-card reveal">
-          <div class="step-num">03</div>
-          <div class="step-icon">📡</div>
-          <h3>TRANSMISIÓN Wi-Fi</h3>
-          <p>Los datos del componente identificado se transmiten de forma inalámbrica a través de Wi-Fi hacia la plataforma web.</p>
-        </div>
-        <div class="step-card reveal">
-          <div class="step-num">04</div>
-          <div class="step-icon">🖥️</div>
-          <h3>VISUALIZACIÓN OLED</h3>
-          <p>La micro-pantalla OLED integrada en las gafas muestra el resultado del reconocimiento directamente al usuario sin interrumpir su visión.</p>
-        </div>
-        <div class="step-card reveal">
-          <div class="step-num">05</div>
-          <div class="step-icon">🌐</div>
-          <h3>PLATAFORMA WEB</h3>
-          <p>La página web recibe los datos y despliega información detallada del componente: nombre, función, especificaciones y recursos de aprendizaje.</p>
-        </div>
+    <h2 class="section-title reveal">¿Cómo <span style="color:var(--cyan-glow)">funciona</span>?</h2>
+    <div class="line-accent reveal"></div>
+  <div class="como-flex">
+
+  <!-- IZQUIERDA: PASOS -->
+  <div class="steps-grid">
+
+    <!-- PASO 1 -->
+    <div class="step-mini reveal">
+      <div class="step-text">
+        <h3>01 · CAPTURA DE IMAGEN</h3>
+        <p>El módulo de cámara integrado en los lentes captura imágenes del componente de 
+        hardware en tiempo real desde el punto de vista del usuario.</p>
       </div>
     </div>
-  </section>
 
-  <section class="components" id="components">
+    <!-- PASO 2 -->
+    <div class="step-mini reveal">
+      <div class="step-text">
+        <h3>02 · PROCESAMIENTO IA</h3>
+        <p>El modelo de inteligencia artificial analiza la imagen y clasifica el 
+        componente detectado entre CPU, RAM, GPU, PLACA MADRE, PSU, FAN, SSD o HDD.</p>
+      </div>
+    </div>
+
+    <!-- PASO 3 -->
+    <div class="step-mini reveal">
+      <div class="step-text">
+        <h3>03 · TRANSMISIÓN Wi-Fi</h3>
+        <p>Los datos del componente identificado se transmiten de forma inalámbrica a 
+        través de Wi-Fi hacia la plataforma web.</p>
+      </div>
+    </div>
+
+    <!-- PASO 4 -->
+    <div class="step-mini reveal">
+      <div class="step-text">
+        <h3>04 · VISUALIZACIÓN OLED</h3>
+        <p>La micro-pantalla OLED integrada en los lentes muestra el resultado del 
+        reconocimiento directamente al usuario sin interrumpir su visión.</p>
+      </div>
+    </div>
+
+    <!-- PASO 5 -->
+    <div class="step-mini full reveal">
+      <div class="step-text">
+        <h3>05 · PLATAFORMA WEB</h3>
+        <p>La página web recibe los datos y despliega información detallada del componente.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- DERECHA: UN SOLO VIDEO -->
+  <div class="step-main-video reveal">
+    <video src="imagenes/video2.mp4" controls></video>
+  </div>
+
+</div>
+</section>
+
+  <section class="componentes" id="componentes">
     <div class="container">
       <div class="reveal">
-        <p class="section-label">// 03 · COMPONENTES DETECTADOS</p>
-        <h2 class="section-title">Hardware que <span style="color:var(--cyan-glow)">GlassIA</span> reconoce</h2>
+        <h2 class="section-title">¿Qué <span style="color:var(--cyan-glow)">componentes</span> reconoce?</h2>
         <div class="line-accent"></div>
-        <p style="color:var(--mid); max-width:600px; line-height:1.7; margin-bottom:1rem;">El modelo de visión artificial ha sido entrenado para identificar con precisión los siguientes <strong style="color:var(--white)">8 componentes</strong> del área de mantenimiento de computadoras.</p>
+        <p style="color:var(--mid); max-width:600px; line-height:1.7; margin-bottom:1rem;">El modelo de visión 
+          artificial ha sido entrenado para identificar los siguientes <strong style="color:var(--white)">
+          ocho componentes</strong> del área de mantenimiento de computadoras.</p>
       </div>
       <div class="comp-grid">
-        <div class="comp-card reveal"><span class="icon">🔲</span><div class="name">CPU</div><div class="full">Procesador Central</div></div>
-        <div class="comp-card reveal"><span class="icon">🟦</span><div class="name">RAM</div><div class="full">Memoria RAM</div></div>
-        <div class="comp-card reveal"><span class="icon">🎮</span><div class="name">GPU</div><div class="full">Tarjeta Gráfica</div></div>
-        <div class="comp-card reveal"><span class="icon">🖥️</span><div class="name">MOBO</div><div class="full">Placa Madre</div></div>
-        <div class="comp-card reveal"><span class="icon">⚡</span><div class="name">PSU</div><div class="full">Fuente de Poder</div></div>
-        <div class="comp-card reveal"><span class="icon">💨</span><div class="name">FAN</div><div class="full">Ventilador</div></div>
-        <div class="comp-card reveal"><span class="icon">💾</span><div class="name">SSD</div><div class="full">Disco Sólido</div></div>
-        <div class="comp-card reveal"><span class="icon">🗄️</span><div class="name">HDD</div><div class="full">Disco Duro</div></div>
+        <div class="comp-card reveal" class="name clickable" onclick="abrirModal('CPU')">
+          <img src="imagenes/cpu1.png" alt="cpu">
+          <div class="name clickable">CPU</div>
+          <div class="full">Procesador Central</div>
+        </div>
+        <div class="comp-card reveal" class="name clickable" onclick="abrirModal('RAM')">
+          <img src="imagenes/ram1.png" alt="ram">
+          <div class="name clickable">RAM</div>
+          <div class="full">Memoria RAM</div>
+        </div>
+        <div class="comp-card reveal" class="name clickable" onclick="abrirModal('GPU')">
+          <img src="imagenes/gpu1.png" alt="gpu">
+          <div class="name clickable">GPU</div>
+          <div class="full">Tarjeta Gráfica</div>
+        </div>
+        <div class="comp-card reveal" class="name clickable" onclick="abrirModal('MOTHERBOARD')">
+          <img src="imagenes/mobd1.png" alt="mobo">
+          <div class="name clickable">MOTHERBOARD</div>
+          <div class="full">Placa Madre</div>
+        </div>
+      </div>
+      <div class="comp-grid1">
+        <div class="comp-card reveal" class="name clickable" onclick="abrirModal('PSU')">
+          <img src="imagenes/psu1.png" alt="psu">
+          <div class="name clickable">PSU</div>
+          <div class="full">Fuente de Poder</div>
+        </div>
+        <div class="comp-card reveal" class="name clickable" onclick="abrirModal('FAN')">
+          <img src="imagenes/fan1.png" alt="fan">
+          <div class="name clickable">FAN</div>
+          <div class="full">Ventilador</div>
+        </div>
+        <div class="comp-card reveal" class="name clickable" onclick="abrirModal('SSD')">
+          <img src="imagenes/ssd1.png" alt="ssd">
+          <div class="name clickable">SSD</div>
+          <div class="full">Disco Sólido</div>
+        </div>
+        <div class="comp-card reveal" class="name clickable" onclick="abrirModal('HDD')">
+          <img src="imagenes/hdd1.png" alt="hdd">
+          <div class="name clickable">HDD</div>
+          <div class="full">Disco Duro</div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="features" id="features">
+  <section class="caracteri" id="caracteri">
     <div class="container">
       <div class="reveal">
-        <p class="section-label">// 04 · CARACTERÍSTICAS</p>
         <h2 class="section-title">¿Qué problema <span style="color:var(--pink-light)">resuelve</span>?</h2>
         <div class="line-accent" style="background: linear-gradient(90deg, var(--pink), var(--cyan));"></div>
       </div>
       <div class="feat-grid">
-        <div class="feat-card reveal">
-          <div class="feat-icon">🎯</div>
-          <h3>IDENTIFICACIÓN EN TIEMPO REAL</h3>
-          <p>Elimina la dificultad de reconocer componentes técnicos en laboratorios de mantenimiento, actuando como recurso didáctico que reduce errores de identificación.</p>
+        <div class="feat-card reveal"><!-- div class="name clickable" onclick="abrirModal('IDENTIFICACIÓN EN TIEMPO REAL')"-->
+          <img src="imagenes/tiempo.png" alt="tiempo"><br><br>
+          <h3>IDENTIFICACIÓN EN TIEMPO REAL</h3><!--<div class="name clickable">CPU</div>-->
+          <p>Elimina la dificultad de reconocer componentes técnicos en laboratorios de mantenimiento, actuando 
+            como recurso didáctico que reduce errores de identificación.</p>
         </div>
         <div class="feat-card reveal">
-          <div class="feat-icon">📚</div>
+          <img src="imagenes/aprendizaje.png" alt="aprendizaje"><br><br>
           <h3>APRENDIZAJE INTERACTIVO</h3>
-          <p>Fomenta un aprendizaje más interactivo, práctico y accesible. Convierte el hardware en algo fácil de comprender para cualquier estudiante del área técnica.</p>
+          <p>Fomenta un aprendizaje más interactivo, práctico y accesible. Convierte el hardware en algo fácil 
+            de comprender para cualquier estudiante del área técnica.</p>
         </div>
         <div class="feat-card reveal">
-          <div class="feat-icon">⚡</div>
+          <img src="imagenes/agilizacion.png" alt="agilización"><br><br>
           <h3>AGILIZACIÓN DEL PROCESO</h3>
-          <p>Reduce el tiempo de identificación mediante reconocimiento automatizado, permitiendo a estudiantes y docentes enfocarse en el aprendizaje real.</p>
+          <p>Reduce el tiempo de identificación mediante reconocimiento automatizado, permitiendo a 
+            estudiantes y docentes enfocarse en el aprendizaje real.</p>
         </div>
         <div class="feat-card reveal">
-          <div class="feat-icon">🌐</div>
+          <img src="imagenes/conectividad.png" alt="conectividad"><br><br>
           <h3>CONECTIVIDAD TOTAL</h3>
-          <p>Integración completa entre las gafas y la plataforma web a través de Wi-Fi, permitiendo acceso instantáneo a información detallada de cada componente.</p>
+          <p>Integración completa entre los lentes y la plataforma web a través de Wi-Fi, permitiendo 
+            acceso instantáneo a información detallada de cada componente.</p>
         </div>
         <div class="feat-card reveal">
-          <div class="feat-icon">🎓</div>
+          <img src="imagenes/publico.png" alt="público"><br><br>
           <h3>PÚBLICO OBJETIVO</h3>
-          <p>Diseñado para estudiantes y docentes del área técnica e informática. Ideal para instituciones con laboratorios de mantenimiento de equipos.</p>
+          <p>Diseñado para estudiantes y docentes del área técnica e informática. Ideal para 
+            instituciones con laboratorios de mantenimiento de equipos.</p>
         </div>
-        <div class="feat-card reveal">
-          <div class="feat-icon">🤖</div>
+        <div class="feat-card reveal">          
+          <img src="imagenes/ia1.png" alt="ia"><br><br>
           <h3>IA EN EL NÚCLEO</h3>
-          <p>Modelo de visión artificial entrenado específicamente para el reconocimiento de hardware, con alta precisión en condiciones reales de laboratorio.</p>
+          <p>Modelo de visión artificial entrenado específicamente para el reconocimiento de ciertos 
+            componentes del hardware, con alta precisión para los laboratorios.</p>
         </div>
       </div>
     </div>
@@ -180,7 +253,7 @@
               <img id="camara" width="480" height="320" style="border-radius:15px; border:3px solid #00e5ff; background-color: #000; display: block; object-fit: cover; box-shadow: 0 0 20px rgba(0, 229, 255, 0.2);">
           </div>
 
-          <div id="resultadoIA" style="
+          <div class="resultIA" id="resultadoIA" style="
               margin: 0 auto 40px auto;
               width: 100%;
               max-width: 650px;
@@ -197,64 +270,57 @@
               Esperando reconocimiento...
           </div>
 
-          <button onclick="iniciarTodo()" style="
-              padding: 18px 45px;
-              background: #00e5ff;
-              color: #000;
-              font-weight: 900;
-              text-transform: uppercase;
-              letter-spacing: 2px;
-              border: none;
-              border-radius: 8px;
-              cursor: pointer;
-              font-family: 'Orbitron', sans-serif;
-              transition: 0.3s;
-              box-shadow: 0 5px 15px rgba(0, 229, 255, 0.3);">
-              INICIAR DETECCIÓN
-          </button>
+          <button class="botonn" onclick="iniciarTodo()">INICIAR DETECCIÓN</button>
       </div>
   </section>
 
   <section class="tech" id="tech">
     <div class="container">
       <div class="reveal">
-        <p class="section-label">// 05 · TECNOLOGÍA</p>
-        <h2 class="section-title">Stack <span style="color:var(--cyan-glow)">Tecnológico</span></h2>
+        <h2 class="section-title name clickable" onclick="abrirModal('Stack Tecnológico')">Stack <span style="color:var(--cyan-glow)">Tecnológico</span></h2>
         <div class="line-accent"></div>
       </div>
       <div class="tech-list reveal">
-        <span class="tech-badge">Visión Artificial</span>
-        <span class="tech-badge">Módulo de Cámara</span>
-        <span class="tech-badge">Micro-pantalla OLED</span>
-        <span class="tech-badge">Wi-Fi Embebido</span>
-        <span class="tech-badge">Machine Learning</span>
-        <span class="tech-badge">Plataforma Web</span>
-        <span class="tech-badge">Tiempo Real</span>
+        <span class="tech-badge tooltip" data-text="Tecnología inalámbrica que permite conectar dispositivos 
+          a internet sin necesidad de cables.">Wi-Fi</span>
+        <span class="tech-badge tooltip" data-text="Pantalla pequeña que utiliza tecnología OLED, ofreciendo 
+        colores vivos, alto contraste y bajo consumo de energía.">Micro-pantalla OLED</span>
+        <span class="tech-badge tooltip" data-text="Rama de la tecnología que permite a las máquinas “ver” y 
+        analizar imágenes como lo haría una persona.">Visión Artificial</span>
+        <span class="tech-badge tooltip" data-text="Componente que captura imágenes o videos, utilizado para 
+        reconocimiento visual en dispositivos como GlassIA.">Módulo de Cámara</span>
+        <span class="tech-badge tooltip" data-text="Espacio en internet donde se ofrecen servicios, aplicaciones 
+        o contenido accesible desde un navegador.">Plataforma Web</span>
+        <span class="tech-badge tooltip" data-text="Se refiere a la capacidad de procesar y mostrar información 
+        de manera inmediata o casi instantánea.">Tiempo Real</span>
       </div>
     </div>
   </section>
 
-  <section class="team" id="team">
+  <section class="equipo" id="equipo">
     <div class="container">
       <div class="reveal">
-        <p class="section-label">// 06 · EQUIPO</p>
         <h2 class="section-title">Las mentes detrás de <span style="color:var(--cyan-glow)">GlassIA</span></h2>
         <div class="line-accent"></div>
       </div>
-      <div class="team-grid">
-        <div class="team-card reveal">
-          <div class="avatar">👩‍💻</div>
+      <div class="equipo-grid">
+        <div class="equipo-card reveal">
+          <img src="imagenes/adri.jpeg" alt="adri" class="avatar">
           <h3>ADRIANA CEDILLO</h3>
           <p class="role">CO-FUNDADORA · DESARROLLADORA</p>
-          <p>Estudiante de tercero del área técnica e informática, apasionada por la inteligencia artificial y el desarrollo de tecnología educativa innovadora.</p>
-          <span class="course-badge">3.º E1 · 2025</span>
+          <p>Estudiante de tercero del área técnica e informática, apasionada por la inteligencia 
+            artificial y el desarrollo de tecnología educativa innovadora.</p><br>
+          <p class="role">adriana.cedillom.est@uets.edu.ec</p>
+          <span class="course-badge">3.º E1 · 2026</span>
         </div>
-        <div class="team-card reveal">
-          <div class="avatar">👩‍🔬</div>
-          <h3>VALENTINA CACERES</h3>
+        <div class="equipo-card reveal">
+          <img src="imagenes/vale.jpeg" alt="vale" class="avatar">
+          <h3>VALENTINA CÁCERES</h3>
           <p class="role">CO-FUNDADORA · INVESTIGADORA</p>
-          <p>Estudiante de tercero del área técnica e informática, enfocada en el diseño de experiencias de aprendizaje y sistemas de reconocimiento visual.</p>
-          <span class="course-badge">3.º E1 · 2025</span>
+          <p>Estudiante de tercero del área técnica e informática, enfocada en el diseño de experiencias 
+            de aprendizaje y sistemas de reconocimiento visual.</p><br>     
+          <p class="role">emilia.astudilloc.est@uets.edu.ec</p>
+          <span class="course-badge">3.º E1 · 2026</span>
         </div>
       </div>
     </div>
@@ -263,7 +329,7 @@
   <footer>
     <div class="footer-logo">GLASSIA</div>
     <p class="footer-slogan">Tu visión, potenciada por la inteligencia.</p>
-    <p class="footer-copy">2025 · GlassIA · Adriana Cedillo & Valentina Cáceres · Proyecto Integrador de Graduación</p>
+    <p class="footer-slogan">glassiaproyecto@gmail.com</p>
   </footer>
 
   <script>
@@ -289,27 +355,37 @@
         if (intervaloIA) return;
         intervaloIA = setInterval(() => {
             fetch("/predict_esp32")
-            .then(res => res.json())
+            .then(res => res.json())                
             .then(data => {
                 let texto = "";
-                if (data.recognized) {
-                  texto = "Elemento: " + data.prediction + "\n";
-                  texto += "Confianza: " + data.confidence + "%\n\n";
-                  if (data.info) {
-                      texto += "Nombre: " + (data.info.nombre || "") + "\n";
-                      texto += "Descripción: " + (data.info.descripcion || "") + "\n";
-                      texto += "Función: " + (data.info.funcion || "") + "\n";
-                  }
-                } else {
-                    texto = "No reconocido\nConfianza: " + data.confidence + "%";
+                // Manejo de error del backend
+                if (data.error) {
+                    document.getElementById("resultadoIA").innerHTML = "Error: " + data.error;
+                    return;
                 }
-                document.getElementById("resultadoIA").innerText = texto;
+
+                if (data.recognized) {
+                    texto = "<b>Elemento:</b> " + data.prediction + "<br>";
+                    texto += "<b>Confianza:</b> " + data.confidence + "%<br><br>";
+
+                    if (data.info) {
+                        texto += "<b>Nombre:</b> " + (data.info.nombre || "") + "<br>";
+                        texto += "<b>Descripción:</b> " + (data.info.descripcion || "") + "<br>";
+                        texto += "<b>Función:</b> " + (data.info.funcion || "") + "<br>";
+                    }
+
+                } else {
+                    texto = "<b>No reconocido</b><br>";
+                    texto += "<b>Confianza:</b> " + data.confidence + "%";
+                }
+                document.getElementById("resultadoIA").innerHTML = texto;
             })
             .catch(() => {
-                document.getElementById("resultadoIA").innerText = "Error de conexión";
+                document.getElementById("resultadoIA").innerHTML = "<b>Error de conexión</b>";
             });
         }, 2000);
     }
+
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => {
@@ -323,6 +399,45 @@
       });
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    const diccionario = {
+      "CPU": "Componente principal del computador que se encarga de ejecutar instrucciones, procesar datos y controlar el funcionamiento general del sistema.",
+      "RAM": "Memoria temporal que almacena los datos y programas que están en uso para que el computador acceda a ellos rápidamente.",
+      "GPU": "Componente encargado de procesar y renderizar gráficos, imágenes y videos, mejorando la calidad visual en juegos y aplicaciones.",
+      "MOTHERBOARD": "Placa base donde se conectan todos los componentes del computador, permitiendo la comunicación entre ellos.",
+      "PSU": "Fuente de alimentación que convierte la energía eléctrica y la distribuye a todos los componentes del computador.",
+      "FAN": "Ventilador que ayuda a disipar el calor generado por los componentes, evitando el sobrecalentamiento.",
+      "SSD": "Dispositivo de almacenamiento que guarda datos de forma rápida usando memoria flash, sin partes mecánicas.",
+      "HDD": "Dispositivo de almacenamiento que guarda información en discos magnéticos giratorios, siendo más lento pero con mayor capacidad",
+      "MICRO-PANTALLA OLED": "Pantalla pequeña que utiliza tecnología OLED, ofreciendo colores vivos, alto contraste y bajo consumo de energía.",
+      "Wi-Fi": "Tecnología inalámbrica que permite conectar dispositivos a internet sin necesidad de cables.",
+      "Visión Artificial": "Rama de la tecnología que permite a las máquinas “ver” y analizar imágenes como lo haría una persona.",
+      "Reconocimiento Visual": "Es la capacidad de un sistema para identificar objetos, personas o patrones en imágenes o videos.",
+      "Tiempo Real": "Se refiere a la capacidad de procesar y mostrar información de manera inmediata o casi instantánea.",
+      "Plataforma Web": "Espacio en internet donde se ofrecen servicios, aplicaciones o contenido accesible desde un navegador.",
+      "Módulo de Cámara": "Componente que captura imágenes o videos, utilizado para reconocimiento visual en dispositivos como GlassIA.",
+      "Inteligencia Artificial": "Tecnología que permite a las máquinas aprender, razonar y tomar decisiones similares a las de los humanos.",
+      "Reconocimiento de Hardware": "Proceso mediante el cual un sistema identifica y detecta los componentes físicos conectados a un computador.",
+      "Educación Tecnológica": "Área de aprendizaje que desarrolla conocimientos y habilidades sobre el uso y funcionamiento de la tecnología.",
+      "Stack Tecnológico": "Es el conjunto de tecnologías (lenguajes, herramientas y plataformas) que se usan para desarrollar y ejecutar un proyecto o sistema."
+    };
+
+    function abrirModal(palabra){
+      document.getElementById("modalTitulo").innerText = palabra;
+      document.getElementById("modalTexto").innerText = diccionario[palabra] || "Definición no disponible.";
+      document.getElementById("modalDic").style.display = "flex";
+    }
+
+    function cerrarModal(){
+      document.getElementById("modalDic").style.display = "none";
+    }
   </script>
+
+  <div id="modalDic" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="cerrarModal()">✖</span>
+    <h3 id="modalTitulo"></h3>
+    <p id="modalTexto"></p>
+  </div>
+</div>
 </body>
 </html>
