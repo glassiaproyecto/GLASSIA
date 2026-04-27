@@ -1,584 +1,963 @@
-/* ===================== ROOT PALETTE ===================== */
-    :root {
-      --deep-teal:   #0d2c3a;
-      --teal:        #1a4a5c;
-      --cyan:        #00c6e0;
-      --cyan-glow:   #00e5ff;
-      --pink:        #e04472;
-      --pink-light:  #ff6b9d;
-      --white:       #f0f8ff;
-      --mid:         #9ec4d0;
-      --dark-bg:     #07191f;
-      --card-bg:     rgba(13,44,58,.75);
-      --glass:       rgba(0,198,224,.07);
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Exo 2', sans-serif;
-      background: var(--dark-bg);
-      color: var(--white);
-      overflow-x: hidden;
-    }
-
-    /* ===================== SCANLINE OVERLAY ===================== */
-    body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background: repeating-linear-gradient(
-        0deg, transparent, transparent 2px,
-        rgba(0,0,0,.12) 2px, rgba(0,0,0,.12) 4px
-      );
-      pointer-events: none;
-      z-index: 9999;
-    }
-
-    /* ===================== NOISE TEXTURE ===================== */
-    body::after {
-      content: '';
-      position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 9998;
-      opacity: .4;
-    }
-
-    /* ===================== TYPOGRAPHY ===================== */
-    h1, h2, h3, .label { font-family: 'Orbitron', sans-serif; }
-
-    /* ===================== NAV ===================== */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1rem 3rem;
-      background: rgba(7,25,31,.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(0,198,224,.2);
-    }
-
-    .nav-logo {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.3rem;
-      font-weight: 900;
-      letter-spacing: .15em;
-      color: var(--cyan-glow);
-      text-shadow: 0 0 18px var(--cyan);
-    }
-
-    .nav-logo span { color: var(--pink); }
-
-    nav ul { list-style: none; display: flex; gap: 2.5rem; }
-    nav ul a {
-      font-size: .8rem; letter-spacing: .12em;
-      font-family: 'Orbitron', sans-serif;
-      color: var(--mid);
-      text-decoration: none;
-      transition: color .3s;
-    }
-    nav ul a:hover { color: var(--cyan-glow); }
-
-    /* ===================== HERO ===================== */
-    .hero {
-      min-height: 100vh;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      text-align: center;
-      padding: 6rem 2rem 4rem;
-      position: relative;
-      background:
-        radial-gradient(ellipse 80% 60% at 50% 30%, rgba(0,198,224,.12) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 40% at 80% 70%, rgba(224,68,114,.1) 0%, transparent 60%),
-        linear-gradient(180deg, var(--dark-bg) 0%, var(--deep-teal) 100%);
-    }
-
-    /* Grid lines */
-    .hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background-image:
-        linear-gradient(rgba(0,198,224,.07) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,198,224,.07) 1px, transparent 1px);
-      background-size: 60px 60px;
-      mask-image: radial-gradient(ellipse 90% 80% at 50% 40%, black 40%, transparent 80%);
-    }
-
-    .hero-badge {
-      display: inline-block;
-      padding: .35rem 1.2rem;
-      border: 1px solid var(--cyan);
-      border-radius: 999px;
-      font-size: .7rem;
-      letter-spacing: .2em;
-      color: var(--cyan);
-      font-family: 'Orbitron', sans-serif;
-      margin-bottom: 1.5rem;
-      animation: pulse-border 2.5s ease-in-out infinite;
-    }
-
-    @keyframes pulse-border {
-      0%,100% { box-shadow: 0 0 8px var(--cyan); }
-      50%      { box-shadow: 0 0 22px var(--cyan-glow); }
-    }
-
-    .hero h1 {
-      font-size: clamp(3.5rem, 10vw, 7rem);
-      font-weight: 900;
-      letter-spacing: .08em;
-      line-height: 1;
-      color: var(--white);
-      text-shadow: 0 0 40px rgba(0,198,224,.5);
-      animation: fadein .8s ease both;
-    }
-
-    .hero h1 .accent { color: var(--cyan-glow); }
-    .hero h1 .dot    { color: var(--pink); }
-
-    .hero-sub {
-      margin-top: 1.2rem;
-      font-size: clamp(1rem, 2.5vw, 1.3rem);
-      color: var(--mid);
-      font-weight: 300;
-      font-style: italic;
-      letter-spacing: .06em;
-      animation: fadein 1s .3s ease both;
-    }
-
-    .hero-cta {
-      margin-top: 2.5rem;
-      display: flex; gap: 1.2rem; flex-wrap: wrap; justify-content: center;
-      animation: fadein 1s .6s ease both;
-    }
-
-    .btn {
-      padding: .8rem 2rem;
-      border-radius: 4px;
-      font-family: 'Orbitron', sans-serif;
-      font-size: .75rem;
-      letter-spacing: .15em;
-      cursor: pointer;
-      text-decoration: none;
-      transition: all .3s;
-    }
-
-    .btn-primary {
-      background: var(--cyan);
-      color: var(--dark-bg);
-      font-weight: 700;
-      border: none;
-      box-shadow: 0 0 20px rgba(0,198,224,.45);
-    }
-    .btn-primary:hover { background: var(--cyan-glow); box-shadow: 0 0 36px rgba(0,230,255,.7); transform: translateY(-2px); }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--pink-light);
-      border: 1px solid var(--pink);
-      box-shadow: 0 0 12px rgba(224,68,114,.25);
-    }
-    .btn-outline:hover { background: rgba(224,68,114,.12); transform: translateY(-2px); }
-
-    /* floating chips */
-    .hero-chips {
-      margin-top: 4rem;
-      display: flex; gap: .8rem; flex-wrap: wrap; justify-content: center;
-      animation: fadein 1s .9s ease both;
-    }
-
-    .chip {
-      padding: .4rem .95rem;
-      border: 1px solid rgba(0,198,224,.3);
-      border-radius: 4px;
-      font-size: .7rem;
-      letter-spacing: .1em;
-      color: var(--cyan);
-      background: rgba(0,198,224,.06);
-    }
-
-    /* scrolling line */
-    .scroll-hint {
-      margin-top: 3rem;
-      display: flex; flex-direction: column; align-items: center; gap: .5rem;
-      color: var(--mid); font-size: .7rem; letter-spacing: .15em;
-      animation: fadein 1s 1.2s ease both;
-    }
-    .scroll-line {
-      width: 1px; height: 50px;
-      background: linear-gradient(to bottom, var(--cyan), transparent);
-      animation: scroll-drop 1.6s ease-in-out infinite;
-    }
-    @keyframes scroll-drop {
-      0%   { transform: scaleY(0); transform-origin: top; opacity: 1; }
-      50%  { transform: scaleY(1); opacity: 1; }
-      100% { transform: scaleY(1); opacity: 0; transform-origin: bottom; }
-    }
-
-    @keyframes fadein {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ===================== SECTIONS ===================== */
-    section { padding: 7rem 2rem; position: relative; }
-
-    .container { max-width: 1100px; margin: 0 auto; }
-
-    .section-label {
-      font-size: .65rem;
-      letter-spacing: .3em;
-      color: var(--cyan);
-      font-family: 'Orbitron', sans-serif;
-      margin-bottom: .6rem;
-    }
-
-    .section-title {
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 700;
-      line-height: 1.15;
-      margin-bottom: 1rem;
-    }
-
-    .line-accent {
-      width: 60px; height: 3px;
-      background: linear-gradient(90deg, var(--cyan), var(--pink));
-      border-radius: 4px;
-      margin-bottom: 2.5rem;
-    }
-
-    /* ===================== ABOUT ===================== */
-    .about {
-      background: linear-gradient(180deg, var(--deep-teal) 0%, var(--dark-bg) 100%);
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-    }
-
-    .about-text p {
-      font-size: 1rem;
-      line-height: 1.8;
-      color: var(--mid);
-      margin-bottom: 1.2rem;
-    }
-    .about-text p strong { color: var(--cyan-glow); font-weight: 600; }
-
-    .about-visual {
-      position: relative;
-      aspect-ratio: 1;
-      display: flex; align-items: center; justify-content: center;
-    }
-
-    /* Radar ring animation */
-    .radar {
-      width: 280px; height: 280px;
-      position: relative;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .radar-ring {
-      position: absolute;
-      border-radius: 50%;
-      border: 1px solid rgba(0,198,224,.35);
-      animation: ring-pulse 2.5s ease-out infinite;
-    }
-    .radar-ring:nth-child(1) { width: 100%; height: 100%; animation-delay: 0s; }
-    .radar-ring:nth-child(2) { width: 70%;  height: 70%;  animation-delay: .5s; }
-    .radar-ring:nth-child(3) { width: 40%;  height: 40%;  animation-delay: 1s; }
-    @keyframes ring-pulse {
-      0%   { opacity: .6; box-shadow: 0 0 0 0 rgba(0,198,224,.3); }
-      70%  { opacity: 0;  box-shadow: 0 0 0 20px rgba(0,198,224,0); }
-      100% { opacity: 0; }
-    }
-    .radar-center {
-      width: 80px; height: 80px;
-      background: radial-gradient(circle, rgba(0,198,224,.3), transparent 70%);
-      border: 2px solid var(--cyan);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 2rem;
-    }
-
-    /* ===================== HOW IT WORKS ===================== */
-    .how {
-      background: var(--dark-bg);
-    }
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-      margin-top: 3rem;
-    }
-
-    .step-card {
-      background: var(--card-bg);
-      border: 1px solid rgba(0,198,224,.15);
-      border-radius: 12px;
-      padding: 2rem 1.5rem;
-      position: relative;
-      overflow: hidden;
-      transition: transform .35s, border-color .35s;
-    }
-    .step-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(0,198,224,.5);
-    }
-    .step-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 3px;
-      background: linear-gradient(90deg, var(--cyan), var(--pink));
-      opacity: 0;
-      transition: opacity .35s;
-    }
-    .step-card:hover::before { opacity: 1; }
-
-    .step-num {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 2.5rem;
-      font-weight: 900;
-      color: rgba(0,198,224,.15);
-      line-height: 1;
-      margin-bottom: .8rem;
-    }
-
-    .step-icon { font-size: 2rem; margin-bottom: .8rem; }
-
-    .step-card h3 {
-      font-size: .9rem;
-      letter-spacing: .08em;
-      color: var(--cyan-glow);
-      margin-bottom: .6rem;
-    }
-
-    .step-card p {
-      font-size: .85rem;
-      color: var(--mid);
-      line-height: 1.6;
-    }
-
-    /* ===================== COMPONENTS ===================== */
-    .components {
-      background: linear-gradient(180deg, var(--dark-bg) 0%, var(--deep-teal) 100%);
-    }
-
-    .comp-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-      gap: 1rem;
-      margin-top: 3rem;
-    }
-
-    .comp-card {
-      background: var(--glass);
-      border: 1px solid rgba(0,198,224,.18);
-      border-radius: 10px;
-      padding: 1.5rem 1rem;
-      text-align: center;
-      cursor: default;
-      transition: all .3s;
-      position: relative;
-      overflow: hidden;
-    }
-    .comp-card:hover {
-      background: rgba(0,198,224,.12);
-      border-color: var(--cyan);
-      transform: scale(1.06);
-      box-shadow: 0 0 20px rgba(0,198,224,.25);
-    }
-
-    .comp-card .icon { font-size: 2rem; margin-bottom: .6rem; display: block; }
-
-    .comp-card .name {
-      font-family: 'Orbitron', sans-serif;
-      font-size: .65rem;
-      letter-spacing: .12em;
-      color: var(--cyan-glow);
-    }
-
-    .comp-card .full {
-      font-size: .72rem;
-      color: var(--mid);
-      margin-top: .3rem;
-    }
-
-    /* scan line effect on hover */
-    .comp-card::after {
-      content: '';
-      position: absolute;
-      left: 0; top: -100%; width: 100%; height: 40%;
-      background: linear-gradient(180deg, transparent, rgba(0,198,224,.1), transparent);
-      transition: top .5s;
-    }
-    .comp-card:hover::after { top: 200%; }
-
-    /* ===================== FEATURES ===================== */
-    .features {
-      background: var(--dark-bg);
-    }
-
-    .feat-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem;
-      margin-top: 3rem;
-    }
-
-    .feat-card {
-      background: var(--card-bg);
-      border: 1px solid rgba(224,68,114,.15);
-      border-radius: 12px;
-      padding: 2rem;
-      transition: all .35s;
-    }
-    .feat-card:hover {
-      border-color: rgba(224,68,114,.5);
-      box-shadow: 0 0 28px rgba(224,68,114,.15);
-    }
-    .feat-icon { font-size: 2.2rem; margin-bottom: 1rem; }
-    .feat-card h3 {
-      font-size: .9rem; letter-spacing: .08em;
-      color: var(--pink-light); margin-bottom: .7rem;
-    }
-    .feat-card p { font-size: .85rem; color: var(--mid); line-height: 1.7; }
-
-    /* ===================== TEAM ===================== */
-    .team {
-      background: linear-gradient(180deg, var(--deep-teal) 0%, var(--dark-bg) 100%);
-    }
-
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-
-    .team-card {
-      background: var(--card-bg);
-      border: 1px solid rgba(0,198,224,.2);
-      border-radius: 16px;
-      padding: 2.5rem 2rem;
-      text-align: center;
-      transition: all .35s;
-    }
-    .team-card:hover {
-      transform: translateY(-8px);
-      border-color: var(--cyan);
-      box-shadow: 0 0 32px rgba(0,198,224,.2);
-    }
-
-    .avatar {
-      width: 80px; height: 80px;
-      border-radius: 50%;
-      border: 2px solid var(--cyan);
-      background: linear-gradient(135deg, var(--teal), var(--pink));
-      display: flex; align-items: center; justify-content: center;
-      font-size: 2rem;
-      margin: 0 auto 1.2rem;
-      box-shadow: 0 0 18px rgba(0,198,224,.3);
-    }
-
-    .team-card h3 {
-      font-size: .95rem; letter-spacing: .08em;
-      color: var(--white); margin-bottom: .3rem;
-    }
-
-    .team-card .role {
-      font-size: .75rem; color: var(--cyan);
-      letter-spacing: .12em; margin-bottom: .8rem;
-    }
-
-    .team-card p { font-size: .82rem; color: var(--mid); line-height: 1.6; }
-
-    /* course badge */
-    .course-badge {
-      display: inline-block;
-      margin-top: .8rem;
-      padding: .3rem .9rem;
-      background: rgba(224,68,114,.12);
-      border: 1px solid rgba(224,68,114,.35);
-      border-radius: 999px;
-      font-size: .65rem;
-      letter-spacing: .1em;
-      color: var(--pink-light);
-    }
-
-    /* ===================== TECH STACK ===================== */
-    .tech {
-      background: var(--dark-bg);
-    }
-
-    .tech-list {
-      display: flex; flex-wrap: wrap; gap: 1rem;
-      margin-top: 2.5rem;
-    }
-
-    .tech-badge {
-      padding: .6rem 1.4rem;
-      border: 1px solid rgba(0,198,224,.3);
-      border-radius: 6px;
-      font-size: .78rem;
-      letter-spacing: .1em;
-      color: var(--cyan-glow);
-      background: rgba(0,198,224,.06);
-      transition: all .3s;
-    }
-    .tech-badge:hover {
-      background: rgba(0,198,224,.15);
-      box-shadow: 0 0 14px rgba(0,198,224,.3);
-    }
-
-    /* ===================== FOOTER ===================== */
-    footer {
-      background: rgba(7,25,31,.98);
-      border-top: 1px solid rgba(0,198,224,.15);
-      padding: 3rem 2rem;
-      text-align: center;
-    }
-
-    .footer-logo {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.8rem;
-      font-weight: 900;
-      color: var(--cyan-glow);
-      text-shadow: 0 0 20px var(--cyan);
-      margin-bottom: .5rem;
-    }
-
-    .footer-slogan {
-      color: var(--mid);
-      font-size: .85rem;
-      font-style: italic;
-      margin-bottom: 2rem;
-    }
-
-    .footer-copy {
-      font-size: .72rem;
-      color: rgba(158,196,208,.4);
-      letter-spacing: .1em;
-    }
-
-    /* ===================== SCROLLBAR ===================== */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--dark-bg); }
-    ::-webkit-scrollbar-thumb { background: var(--teal); border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--cyan); }
-
-    /* ===================== RESPONSIVE ===================== */
-    @media (max-width: 768px) {
-      nav { padding: 1rem 1.5rem; }
-      nav ul { display: none; }
-      .about-grid { grid-template-columns: 1fr; }
-      .about-visual { display: none; }
-      .hero h1 { font-size: 3rem; }
-    }
-
-    /* ===================== SCROLL REVEAL ===================== */
-    .reveal { opacity: 0; transform: translateY(32px); transition: opacity .7s ease, transform .7s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+/*
+  ESTILOS.CSS — GLASSIA
+  Proyecto Integrador: Lentes inteligentes con reconocimiento de hardware
+  Autoras: Adriana Cedillo · Valentina Cáceres
+  Curso: 3.º E1 · 2026
+*/
+
+/*1rem = 16px*/
+
+/* 1. VARIABLES CSS — PALETA DE COLORES
+   Se usan variables globales con :root para mantener consistencia visual en toda la página. Cualquier cambio 
+   aquí afecta a todos los elementos. Paleta oscura estilo "tech/futurista" con tonos teal, cyan y pink.
+*/
+:root {
+  --deep-teal:   #0d2c3a;   /* Fondo oscuro azul-verdoso                           */
+  --teal:        #1a4a5c;   /* Azul-verde intermedio                               */
+  --cyan:        #00c6e0;   /* Color principal de acento — cyan vibrante           */
+  --cyan-glow:   #00e5ff;   /* Cyan brillante para textos destacados y brillos     */
+  --pink:        #e04472;   /* Color secundario de acento — rosa/fucsia            */
+  --pink-light:  #ff6b9d;   /* Rosa más claro                                      */
+  --white:       #f0f8ff;   /* Blanco con leve tinte azul                          */
+  --mid:         #9ec4d0;   /* Gris-azulado suave                                  */
+  --dark-bg:     #07191f;   /* Fondo más oscuro de toda la página                  */
+  --card-bg:     rgba(13,44,58,.75); /* Fondo semitransparente de tarjetas         */
+  --glass:       rgba(0,198,224,.07); /* Fondo efecto vidrio                       */
+}
+
+
+/* 2. RESET Y CONFIGURACIÓN BASE
+   Elimina márgenes y rellenos por defecto del navegador para tener control total del diseño. box-sizing: 
+   border-box garantiza que padding y border se incluyan dentro del tamaño total del elemento.
+*/
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Activa el scroll suave al hacer clic en los links de navegación (#sección) */
+html { scroll-behavior: smooth; }
+
+/* Estilos generales del cuerpo de la página */
+body {
+  font-family: 'Exo 2', sans-serif;
+  background: var(--dark-bg);       /* Fondo oscuro global                         */
+  color: var(--white);              /* Color de texto por defecto                  */
+  overflow-x: hidden;               /* Evita scroll horizontal no deseado          */
+}
+
+
+/* 3. EFECTOS DE FONDO — SCANLINES Y NOISE TEXTURE
+   Estos dos pseudo-elementos (::before y ::after) se superponen sobre TODA la página usando position: fixed 
+   e inset: 0, creando un efecto visual tipo "pantalla antigua" o "estética retro-tech". pointer-events: none 
+   asegura que NO bloqueen clicks del usuario. z-index alto (9998-9999) los mantiene siempre por encima del contenido.
   
+   SCANLINES: líneas horizontales sutiles cada 4px (efecto monitor CRT) */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent, transparent 2px,
+    rgba(0,0,0,.12) 2px, rgba(0,0,0,.12) 4px
+  );
+  pointer-events: none;
+  z-index: 9999; /* Siempre encima de todo */
+}
+
+/* NOISE TEXTURE: ruido visual generado con SVG inline. Da profundidad y textura al fondo oscuro, evitando que se vea plano */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9998;
+  opacity: .4;
+}
+
+/* 4. TIPOGRAFÍA
+   - Orbitron: fuente futurista/tecnológica, usada en títulos y nav.
+   - Exo 2: fuente moderna y legible, usada en párrafos y cuerpo.
+*/
+h1, h2, h3, .label { font-family: 'Orbitron', sans-serif; }
+
+/* 5. BARRA DE NAVEGACIÓN (NAV)
+   Barra fija en la parte superior (position: fixed), siempre visible mientras el usuario hace scroll. El 
+   fondo semitransparente con backdrop-filter: blur crea efecto de vidrio esmerilado.
+*/
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;                          /* Por encima del contenido, pero debajo de modales  */
+  display: flex;                         /* Para alinear, centrar y organizar layouts de forma rápida.*/
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 3rem;
+  background: rgba(7,25,31,.85);
+  backdrop-filter: blur(12px);           /* Desenfoque del fondo                               */
+  border-bottom: 1px solid rgba(0,198,224,.2); /* Línea inferior en cyan                     */
+}
+
+.nav-logo {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 900;
+  letter-spacing: .15em;             /* Espacio entre letras*/
+  color: var(--cyan-glow);
+  text-shadow: 0 0 18px var(--cyan); /* Brillo neón alrededor del texto */
+}
+
+.nav-logo span { color: var(--pink); }
+
+nav ul { list-style: none; display: flex; gap: 2.5rem; }
+
+nav ul a {
+  font-size: .8rem;
+  letter-spacing: .12em;
+  font-family: 'Orbitron', sans-serif;
+  color: var(--mid);            /* Color base: gris azulado           */
+  text-decoration: none;
+  transition: color .3s;        /* Cambio de color sea suave (0.3 seg)*/
+}
+
+nav ul a:hover { color: var(--cyan-glow); } /* Al pasar el mouse: cyan brillante */
+
+/* 6. SECCIÓN HERO — PORTADA PRINCIPAL
+   Primera sección visible al abrir la página. Ocupa el 100% de la pantalla (100vh). Tiene un fondo con 
+   múltiples gradientes radiales y un pseudo-elemento ::before con líneas de cuadrícula (grid lines) que dan 
+   la sensación de profundidad tecnológica.
+*/
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 96px 32px 64px;;
+  position: relative;
+  /* Tres capas de fondo: cyan suave arriba, pink sutil a la derecha, gradiente oscuro */
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 30%, rgba(0,198,224,.12) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 80% 70%, rgba(224,68,114,.1) 0%, transparent 60%),
+    linear-gradient(180deg, var(--dark-bg) 0%, var(--deep-teal) 100%);
+}
+
+/* Grid lines del hero — efecto HUD/pantalla tecnológica. Se usa mask-image para que las líneas se desvanezcan en los bordes */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,198,224,.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,198,224,.07) 1px, transparent 1px);
+  background-size: 60px 60px;       /* Tamaño de cada celda del grid */
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 40%, black 40%, transparent 80%);
+}
+
+/* Badge pequeño con animación de brillo pulsante */
+.hero-badge {
+  display: inline-block;
+  padding: .35rem 1.2rem;
+  border: 1px solid var(--cyan);
+  border-radius: 999px;      /* Totalmente redondeado (pill shape)   */
+  font-size: .7rem;
+  letter-spacing: .2em;
+  color: var(--cyan);
+  font-family: 'Orbitron', sans-serif;
+  margin-bottom: 1.5rem;
+  animation: pulse-border 2.5s ease-in-out infinite; /* Parpadeo de brillo */
+}
+
+/* Animación del borde del badge: brillo que pulsa suavemente */
+@keyframes pulse-border {
+  0%,100% { box-shadow: 0 0 8px var(--cyan); }
+  50%      { box-shadow: 0 0 22px var(--cyan-glow); }
+}
+
+/* Título principal "GLASSIA" — tamaño fluido con clamp() para responsivo */
+.hero h1 {
+  font-size: clamp(3.5rem, 10vw, 7rem); /* Mínimo 3.5rem, ideal 10% viewport, máx 7rem */
+  font-weight: 900;
+  letter-spacing: .08em;
+  line-height: 1;
+  color: var(--white);
+  text-shadow: 0 0 40px rgba(0,198,224,.5); /* Halo cyan alrededor del título */
+  animation: fadein .8s ease both;
+}
+
+/* Partes del título con colores especiales */
+.hero h1 .accent { color: var(--cyan-glow); } /* "GLASS"  */
+.hero h1 .dot    { color: var(--pink); }      /* "IA"     */
+
+/* Subtítulo bajo el logo principal */
+.hero-sub {
+  margin-top: 1.2rem;
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  color: var(--mid);
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: .06em;
+  animation: fadein 1s .3s ease both; /* Aparece 0.3s después que el título */
+}
+
+/* Contenedor de los botones CTA (Call To Action) */
+.hero-cta {
+  margin-top: 2.5rem;
+  display: flex;
+  gap: 1.2rem;        /* Espacio entre elementos (en flex o grid)      */
+  flex-wrap: wrap;    /* Que los elementos bajen a la siguiente línea  */
+  justify-content: center;
+  animation: fadein 1s .6s ease both;
+}
+
+/* Estilos base compartidos por ambos botones */
+.btn {
+  padding: .8rem 2rem;
+  border-radius: 4px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: .75rem;
+  letter-spacing: .15em;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all .3s;
+}
+
+/* Botón primario (fondo cyan sólido) — "Explorar Proyecto" */
+.btn-primary {
+  background: var(--cyan);
+  color: var(--dark-bg);   /* Texto oscuro sobre fondo claro   */
+  font-weight: 700;
+  border: none;
+  box-shadow: 0 0 20px rgba(0,198,224,.45);
+}
+
+.btn-primary:hover {
+  background: var(--cyan-glow);
+  box-shadow: 0 0 36px rgba(0,230,255,.7);
+  transform: translateY(-2px); /* Se eleva ligeramente al hacer hover */
+}
+
+/* Botón secundario — "Cómo Funciona" */
+.btn-outline {
+  background: transparent;
+  color: var(--pink-light);
+  border: 1px solid var(--pink);
+  box-shadow: 0 0 12px rgba(224,68,114,.25);
+}
+
+.btn-outline:hover {
+  background: rgba(224,68,114,.12);
+  transform: translateY(-2px);
+}
+
+/* Chips tecnológicos flotantes en la parte inferior del hero (badges de IA, Visión Artificial, etc.) */
+.hero-chips {
+  margin-top: 4rem;
+  display: flex;
+  gap: .8rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  animation: fadein 1s .9s ease both;
+}
+
+/* Indicador de scroll (línea animada + texto "DESLIZAR") */
+.scroll-hint {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .5rem;
+  color: var(--mid);
+  font-size: .7rem;
+  letter-spacing: .15em;
+  animation: fadein 1s 1.2s ease both;
+}
+
+/* Línea vertical que cae y desaparece — sugiere hacer scroll */
+.scroll-line {
+  width: 1px;
+  height: 50px;
+  background: linear-gradient(to bottom, var(--cyan), transparent);
+  animation: scroll-drop 1.6s ease-in-out infinite;
+}
+
+/* Animación de la línea de scroll: aparece desde arriba y se desvanece abajo */
+@keyframes scroll-drop {
+  0%   { transform: scaleY(0); transform-origin: top; opacity: 1; }
+  50%  { transform: scaleY(1); opacity: 1; }
+  100% { transform: scaleY(1); opacity: 0; transform-origin: bottom; }
+}
+
+
+/* 7. ANIMACIONES GLOBALES (KEYFRAMES)
+   fadein: Aparición suave desde abajo. Usada en múltiples elementos del hero con distintos delays para crear efecto de cascada.
+*/
+@keyframes fadein {
+  from { opacity: 0; transform: translateY(24px); } /* Inicia invisible y 24px abajo */
+  to   { opacity: 1; transform: translateY(0); }    /* Termina visible en su lugar   */
+}
+
+
+/* 8. SECCIONES GENERALES Y CONTENEDORES
+   Todas las secciones (<section>) comparten el mismo padding.
+   .container centra y limita el ancho máximo del contenido.
+   .section-label y .section-title son los títulos de cada sección.
+*/
+section { padding: 7rem 2rem; position: relative; }
+
+/* Ancho máximo 1100px, centrado automáticamente */
+.container { max-width: 1100px; margin: 0 auto; }
+
+/* Etiqueta pequeña encima del título (ej: "SOBRE EL PROYECTO") */
+.section-label {
+  font-size: .65rem;
+  letter-spacing: .3em;
+  color: var(--cyan);
+  font-family: 'Orbitron', sans-serif;
+  margin-bottom: .6rem;
+}
+
+/* Título principal de cada sección — tamaño fluido */
+.section-title {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+
+/* Línea decorativa degradada cyan→pink debajo de cada título de sección */
+.line-accent {
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--cyan), var(--pink));
+  border-radius: 4px;
+  margin-bottom: 2.5rem;
+}
+
+/* 9. SECCIÓN "SOBRE" — ¿Qué es GlassIA?
+   Layout en dos columnas: texto a la izquierda y animación visual a la derecha. En móvil se apila en una 
+   sola columna (responsive). El elemento visual es una animación de "radar" con anillos pulsantes.
+*/
+.sobre {
+  background: linear-gradient(180deg, var(--deep-teal) 0%, var(--dark-bg) 100%);
+}
+
+/* Grid de dos columnas: texto | visual */
+.sobre-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+/* Texto descriptivo de la sección */
+.sobre-text p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--mid);
+  margin-bottom: 1.2rem;
+}
+.sobre-text p strong { color: var(--cyan-glow); font-weight: 600; }
+
+/* Contenedor del visual del radar — cuadrado con ratio 1:1 */
+.sobre-visual {
+  position: relative;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ANIMACIÓN RADAR — círculos concéntricos que pulsean hacia afuera. Simula una señal de detección o sonar */
+.radar {
+  width: 280px;
+  height: 280px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Cada anillo tiene diferente tamaño y delay de animación */
+.radar-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(0,198,224,.35);
+  animation: ring-pulse 2.5s ease-out infinite;
+}
+.radar-ring:nth-child(1) { width: 100%; height: 100%; animation-delay: 0s; }  /* Anillo exterior */
+.radar-ring:nth-child(2) { width: 70%;  height: 70%;  animation-delay: .5s; } /* Anillo medio    */
+.radar-ring:nth-child(3) { width: 40%;  height: 40%;  animation-delay: 1s; }  /* Anillo interior */
+
+/* Keyframe del pulso: aparece, se expande con sombra y desaparece */
+@keyframes ring-pulse {
+  0%   { opacity: .6; box-shadow: 0 0 0 0 rgba(0,198,224,.3); }
+  70%  { opacity: 0;  box-shadow: 0 0 0 20px rgba(0,198,224,0); }
+  100% { opacity: 0; }
+}
+
+/* Centro del radar: imagen de los lentes */
+.radar-center {
+  width: 110px;
+  height: 110px;
+  background: radial-gradient(circle, rgba(0,198,224,.3), transparent 70%);
+  border: 2px solid var(--cyan);
+  border-radius: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+
+
+/* 10. SECCIÓN "CÓMO FUNCIONA"
+   Layout con dos columnas: izquierda = grid de tarjetas de pasos, derecha = video principal del proyecto.
+   Las tarjetas explican cada etapa del proceso de GlassIA.
+*/
+.como { background: var(--dark-bg); }
+
+/* Contenedor flex principal de la sección */
+.como-flex {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr; /* Pasos: más ancho | Video: más estrecho */
+  gap: 4rem;
+  margin-top: 3rem;
+  align-items: start;
+}
+
+/* Grid interno de las tarjetas de pasos (2 columnas) */
+.steps-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+/* Tarjeta individual de cada paso del proceso */
+.step-mini {
+  background: var(--card-bg);
+  border: 1px solid rgba(0,198,224,.15);
+  border-radius: 12px;
+  padding: 1.2rem;
+  position: relative;
+  overflow: hidden;
+  transition: all .35s;
+}
+
+/* Hover: se eleva, borde más brillante y sombra */
+.step-mini:hover {
+  transform: translateY(-5px);
+  border-color: rgba(0,198,224,.5);
+  box-shadow: 0 0 18px rgba(0,198,224,.15);
+}
+
+/* Línea superior decorativa que aparece al hacer hover (efecto de las otras cards) */
+.step-mini::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--cyan), var(--pink));
+  opacity: 0;          /* Invisible por defecto               */
+  transition: opacity .35s;
+}
+.step-mini:hover::before { opacity: 1; } /* Visible al hacer hover */
+
+/* Título del paso dentro de la tarjeta */
+.step-mini h3 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: .8rem;
+  letter-spacing: .08em;
+  color: var(--cyan-glow);
+  margin-bottom: .5rem;
+}
+
+/* Texto descriptivo del paso */
+.step-mini p {
+  font-size: .75rem;
+  color: var(--mid);
+  line-height: 1.5;
+}
+
+/* El último paso (05 · PLATAFORMA WEB) ocupa las dos columnas completas */
+.step-mini.full { grid-column: span 2; }
+
+/* Contenedor del video — centrado horizontalmente */
+.step-main-video {
+  display: flex;
+  justify-content: center;
+}
+
+/* Video con aspecto de celular vertical (260×460px), con borde cyan y sombra */
+.step-main-video video {
+  width: 260px;
+  height: 460px;
+  object-fit: cover;
+  border-radius: 20px;
+  border: 2px solid rgba(0,198,224,.3);
+  box-shadow: 0 0 30px rgba(0,198,224,.25);
+  transition: .3s;
+}
+.step-main-video video:hover {
+  box-shadow: 0 0 45px rgba(0,230,255,.45); /* Brillo más intenso al hover */
+}
+
+/* Responsive: en móvil el layout se convierte en una sola columna */
+@media (max-width: 768px) {
+  .como-flex { grid-template-columns: 1fr; }
+}
+
+/* Estilos auxiliares de texto en pasos (usados en variantes de layout) */
+.step-text h3 {
+  font-family: 'Orbitron', sans-serif;
+  color: var(--cyan-glow);
+  margin-bottom: 1rem;
+}
+.step-text p {
+  color: var(--mid);
+  line-height: 1.7;
+}
+
+/* Estilo de video usado en otras variantes del layout */
+.step-video video {
+  width: 100%;
+  border-radius: 12px;
+  border: 2px solid rgba(0,198,224,.3);
+  box-shadow: 0 0 20px rgba(0,198,224,.2);
+}
+
+/* Responsive para layout alternativo de pasos */
+@media (max-width: 768px) {
+  .step-row { grid-template-columns: 1fr; }
+}
+
+
+/* 11. SECCIÓN "COMPONENTES" — ¿Qué reconoce GlassIA?
+   Dos grids de tarjetas: comp-grid (4 col flexible) para la fila principal de componentes, y comp-grid1 (4 col fija) 
+   para la segunda. Cada tarjeta muestra imagen, nombre corto y nombre completo. Al hacer hover la tarjeta escala y 
+   aparece un efecto de "scan".
+*/
+.componentes {
+  background: linear-gradient(180deg, var(--dark-bg) 0%, var(--deep-teal) 100%);
+}
+
+/* Grid principal — 4 columnas con ancho mínimo de 200px (flexible) */
+.comp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 2fr));
+  gap: 1rem;
+  margin-top: 3rem;
+  text-align: center;
+}
+
+/* Grid secundario — columnas de igual tamaño */
+.comp-grid1 {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 3rem;
+  align-content: center;
+}
+
+/* Tarjeta de componente individual */
+.comp-card {
+  background: var(--glass);                      /* Fondo muy translúcido (efecto vidrio) */
+  border: 1px solid rgba(0,198,224,.18);
+  border-radius: 10px;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  cursor: default;
+  transition: all .3s;
+  position: relative;
+  overflow: hidden;                              /* Necesario para el efecto scan */
+}
+
+/* Hover: más opaco, borde cyan, escala ligeramente */
+.comp-card:hover {
+  background: rgba(0,198,224,.12);
+  border-color: var(--cyan);
+  transform: scale(1.06);
+  box-shadow: 0 0 20px rgba(0,198,224,.25);
+}
+
+/* Emoji / icono del componente */
+.comp-card .icon { font-size: 2rem; margin-bottom: .6rem; display: block; }
+
+/* Nombre corto del componente (CPU, RAM, GPU...) */
+.comp-card .name {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 15px;
+  letter-spacing: .12em;
+  color: var(--cyan-glow);
+}
+
+/* Nombre completo debajo (Procesador Central, Memoria RAM...) */
+.comp-card .full {
+  font-size: 14px;
+  color: var(--mid);
+  margin-top: .3rem;
+}
+
+/* EFECTO SCAN: franja de luz que baja a través de la tarjeta al hacer hover. Empieza arriba (-100%) y termina abajo (200%) en 0.5s */
+.comp-card::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: -100%;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(180deg, transparent, rgba(0,198,224,.1), transparent);
+  transition: top .5s;
+}
+.comp-card:hover::after { top: 200%; } /* Activa el scan al hacer hover */
+
+
+/* 12. SECCIÓN "CARACTERÍSTICAS" — ¿Qué problema resuelve?
+   Grid de 6 tarjetas que explican los beneficios y funcionalidades del proyecto. Usan borde y sombra en color 
+   pink (diferencia visual de la sección de componentes que usa cyan).
+*/
+.caracteri { background: var(--dark-bg); }
+
+/* Grid responsive: mínimo 260px por tarjeta */
+.feat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+/* Tarjeta de característica con acento en pink */
+.feat-card {
+  background: var(--card-bg);
+  border: 1px solid rgba(224,68,114,.15); /* Borde pink suave */
+  border-radius: 12px;
+  padding: 2rem;
+  transition: all .35s;
+}
+
+.feat-card:hover {
+  border-color: rgba(224,68,114,.5);
+  box-shadow: 0 0 28px rgba(224,68,114,.15); /* Resplandor pink */
+}
+
+.feat-card h3 {
+  font-size: .9rem;
+  letter-spacing: .08em;
+  color: var(--pink-light);  /* Título en rosa claro */
+  margin-bottom: .7rem;
+}
+
+.feat-card p { font-size: .85rem; color: var(--mid); line-height: 1.7; }
+
+
+/* 13. SECCIÓN "EQUIPO" — Las mentes detrás de GlassIA
+   Tarjetas de perfil para cada miembro del equipo con foto circular, nombre, rol y descripción. 
+   El avatar usa la imagen de perfil con borde cyan y sombra.
+*/
+.equipo {
+  background: linear-gradient(180deg, var(--deep-teal) 0%, var(--dark-bg) 100%);
+}
+
+/* Grid de tarjetas de equipo — mínimo 240px por tarjeta */
+.equipo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+/* Tarjeta de perfil del miembro */
+.equipo-card {
+  background: var(--card-bg);
+  border: 1px solid rgba(0,198,224,.2);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  transition: all .35s;
+}
+.equipo-card:hover {
+  transform: translateY(-8px);        /* Se eleva más que otras cards     */
+  border-color: var(--cyan);
+  box-shadow: 0 0 32px rgba(0,198,224,.2);
+}
+
+/* Foto circular de perfil (avatar) */
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;               /* Círculo perfecto                  */
+  border: 2px solid var(--cyan);
+  background: linear-gradient(135deg, var(--teal), var(--pink)); /* Fallback si no carga la foto */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin: 0 auto 1.2rem;
+  box-shadow: 0 0 18px rgba(0,198,224,.3);
+}
+
+.equipo-card h3 {
+  font-size: .95rem;
+  letter-spacing: .08em;
+  color: var(--white);
+  margin-bottom: .3rem;
+}
+
+/* Rol del miembro (CO-FUNDADORA · DESARROLLADORA) */
+.equipo-card .role {
+  font-size: .75rem;
+  color: var(--cyan);
+  letter-spacing: .12em;
+  margin-bottom: .8rem;
+}
+
+.equipo-card p { font-size: .82rem; color: var(--mid); line-height: 1.6; }
+
+/* Badge de curso (3.º E1 · 2026) debajo de cada tarjeta */
+.course-badge {
+  display: inline-block;
+  margin-top: .8rem;
+  padding: .3rem .9rem;
+  background: rgba(224,68,114,.12);
+  border: 1px solid rgba(224,68,114,.35);
+  border-radius: 999px;
+  font-size: .65rem;
+  letter-spacing: .1em;
+  color: var(--pink-light);
+}
+
+
+/* 14. SECCIÓN "TECH STACK" — Tecnologías usadas
+   Lista horizontal de badges/chips con las tecnologías del proyecto. Cada badge tiene efecto de brillo al hover.
+*/
+.tech { background: var(--dark-bg); }
+
+/* Lista flex que hace wrap (pasa a siguiente línea si no cabe) */
+.tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+/* Badge individual de tecnología (Wi-Fi, OLED, Visión Artificial...) */
+.tech-badge {
+  padding: .6rem 1.4rem;
+  border: 1px solid rgba(0,198,224,.3);
+  border-radius: 6px;
+  font-size: .78rem;
+  letter-spacing: .1em;
+  color: var(--cyan-glow);
+  background: rgba(0,198,224,.06);
+  transition: all .3s;
+}
+.tech-badge:hover {
+  background: rgba(0,198,224,.15);
+  box-shadow: 0 0 14px rgba(0,198,224,.3);
+}
+
+
+/* 15. FOOTER
+   Pie de página con logo, slogan y email de contacto. Fondo casi negro con línea superior de separación.
+*/
+footer {
+  background: rgba(7,25,31,.98);
+  border-top: 1px solid rgba(0,198,224,.15);
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+/* Logo del footer — más grande que en el nav */
+.footer-logo {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--cyan-glow);
+  text-shadow: 0 0 20px var(--cyan);
+  margin-bottom: .5rem;
+}
+
+/* Slogan y email bajo el logo */
+.footer-slogan {
+  color: var(--mid);
+  font-size: .85rem;
+  font-style: italic;
+  margin-bottom: 8px;
+}
+
+/* 16. SCROLLBAR PERSONALIZADO
+   Reemplaza el scrollbar del navegador con uno más delgado (6px) que combina con la paleta de colores del sitio.
+   Solo funciona en navegadores WebKit (Chrome, Edge, Safari).
+*/
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--dark-bg); }               /* Fondo del track */
+::-webkit-scrollbar-thumb { background: var(--teal); border-radius: 4px; } /* Barra */
+::-webkit-scrollbar-thumb:hover { background: var(--cyan); }            /* Hover: cyan */
+
+
+/* 17. DISEÑO RESPONSIVE (MÓVIL)
+   Para pantallas de 768px o menos:
+   - El menú de navegación se oculta (se necesitaría un menú hamburguesa)
+   - Los grids de dos columnas se vuelven de una sola columna
+   - El visual del radar en "sobre" se oculta para dar más espacio al texto
+   - El título del hero se hace más pequeño
+*/
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.5rem; }
+  nav ul { display: none; }                         /* Menú oculto en móvil     */
+  .sobre-grid { grid-template-columns: 1fr; }       /* Una columna en "Sobre"   */
+  .sobre-visual { display: none; }                  /* Ocultar el radar         */
+  .hero h1 { font-size: 3rem; }                     /* Título más pequeño       */
+}
+
+
+/* 18. SCROLL REVEAL — ANIMACIÓN DE APARICIÓN AL HACER SCROLL
+   Los elementos con clase .reveal comienzan invisibles y desplazados hacia abajo. Cuando se hace scroll y el elemento 
+   entra en pantalla, JavaScript le añade la clase .visible y se activa la transición CSS que lo hace aparecer suavemente.
+*/
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);                 /* Empieza 32px más abajo */
+  transition: opacity .7s ease, transform .7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);                    /* Sube a su posición normal */
+}
+
+
+/* 19. MODAL DICCIONARIO
+   Ventana emergente que aparece al hacer click en palabras técnicas subrayadas con guiones (clase .clickable). 
+   Muestra el término y su definición. Se centra en la pantalla con posición fija y fondo oscuro. 
+*/
+
+/* Overlay: cubre toda la pantalla con fondo semiopaco. display:none por defecto; JavaScript lo cambia a flex para mostrarlo */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8); /* Fondo negro al 80% de opacidad */
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Contenido del modal — tarjeta centrada con borde cyan */
+.modal-content {
+  background: var(--card-bg);
+  border: 1px solid rgba(0,198,224,.3);
+  border-radius: 12px;
+  padding: 2rem;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 0 25px rgba(0,198,224,.3);
+}
+
+.modal-content h3 { color: var(--cyan-glow); margin-bottom: 1rem; }
+.modal-content p  { color: var(--mid); line-height: 1.6; }
+
+/* Botón de cierre (X) — flotante arriba a la derecha del modal */
+.close-btn {
+  float: right;
+  cursor: pointer;
+  color: var(--pink-light);
+  font-size: 1.2rem;
+}
+
+/* Palabras clickeables en el texto (abren el modal del diccionario)
+   Se marcan con borde inferior de guiones en cyan */
+.clickable {
+  cursor: pointer;
+  border-bottom: 1px dashed var(--cyan);
+}
+
+
+/* 20. TOOLTIP INTERACTIVO
+   Cajas emergentes que aparecen al hacer hover sobre badges tecnológicos y chips del hero. Se implementan 
+   100% en CSS usando ::after (caja de texto) y ::before (línea decorativa). No requieren JavaScript. El texto 
+   del tooltip se define en el atributo data-text del HTML.
+*/
+
+/* Elemento que tiene tooltip — texto con brillo al hacer hover */
+.tooltip {
+  position: relative;          /* Contexto para el posicionamiento absoluto del ::after */
+  cursor: help;
+  color: var(--cyan-glow);
+  font-weight: 600;
+  border-bottom: 1px dashed var(--cyan); /* Indicador visual de que tiene info extra */
+  transition: all .3s;
+}
+.tooltip:hover {
+  text-shadow: 0 0 8px var(--cyan-glow); /* Brillo de la palabra al hacer hover */
+}
+
+/* CAJA DEL TOOLTIP — aparece a la derecha del elemento (left: 70%) */
+.tooltip::after {
+  content: attr(data-text);    /* Lee el texto del atributo data-text en el HTML */
+  position: absolute;
+  top: 50%;
+  left: 70%;
+  transform: translateY(-50%);
+
+  width: 240px;
+  padding: 12px 14px;
+
+  background: var(--dark-bg);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+
+  color: #ffffff;
+  font-size: 0.8rem;
+  line-height: 1.5;
+
+  text-shadow: none;           /* Cancela el brillo del texto padre */
+
+  opacity: 0;                  /* Invisible por defecto              */
+  pointer-events: none;        /* No bloquea clicks                  */
+  transition: opacity .2s ease;
+
+  z-index: 200;
+}
+
+/* Línea decorativa pequeña que conecta el texto con la caja del tooltip */
+.tooltip::before {
+  content: '';
+  position: absolute;
+  top: calc(50% - 1px);
+  width: 8px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--cyan), var(--pink));
+  opacity: 0;
+  transition: .25s;
+}
+
+/* Al hacer hover: la caja y la línea aparecen */
+.tooltip:hover::after {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+}
+.tooltip:hover::before { opacity: 1; }
+
+
+/* 21. BOTÓN DE DETECCIÓN — "INICIAR DETECCIÓN"
+   Botón principal de la sección de reconocimiento en tiempo real. Estilo llamativo con fondo cyan, 
+   texto negro, fuente Orbitron en mayúsculas y sombra azulada.
+*/
+.botonn {
+  padding: 18px 45px;
+  background: #00e5ff;              /* Cyan puro — máxima visibilidad   */
+  color: #000;                      /* Texto negro sobre fondo claro     */
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Orbitron', sans-serif;
+  transition: 0.3s;
+  box-shadow: 0 5px 15px rgba(0, 229, 255, 0.3); /* Sombra de luz cyan debajo */
+}
